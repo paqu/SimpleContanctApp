@@ -12,6 +12,8 @@ from PyQt5.QtWidgets import (
     QWidget,
 )
 
+from .model import ContactsModel
+
 
 class Window(QMainWindow):
     """Main Window."""
@@ -26,6 +28,7 @@ class Window(QMainWindow):
         self.layout = QHBoxLayout()
         self.centralWidget.setLayout(self.layout)
 
+        self.contactsModel = ContactsModel()
         self.setupUI()
 
     def setupUI(self):
@@ -33,6 +36,7 @@ class Window(QMainWindow):
         # Create the table view widget
 
         self.table = QTableView()
+        self.table.setModel(self.contactsModel.model)
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.resizeColumnsToContents()
 
